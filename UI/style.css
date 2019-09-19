@@ -14,23 +14,20 @@ nav {
 }
 
 body{
-   /*background-color: background: #abbaab; */ /* fallback for old browsers */
-   /*background: -webkit-linear-gradient(to right, #ffffff, #abbaab);*/  /* Chrome 10-25, Safari 5.1-6 */
-    /*background: linear-gradient(to right, #ffffff, #abbaab);*//* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-   /*justify-content: center;*/
-   background-color: #bfbfbf;
+   
+   background-color:#826969;
 }
 
 .logo {
 	text-transform: uppercase;
 	letter-spacing: 5px;
-	font-size: 20px;
+	font-size: 25px;
 }
 
 .components {
 	display: flex;
 	justify-content: space-around;
-	width: 30%;
+	width: 35%;
 }
 
 .components li {
@@ -71,51 +68,7 @@ body{
 }
 
 
-/*
-.boxes{
-	display: grid;
-	grid-gap: 20px;
-	grid-template-columns: repeat(1, 4fr);
-    height: 50px;*/
-/*}
-.boxes2{
-	display: grid;
-	grid-gap: 20px;
-	grid-template-columns: repeat(1, 3fr);
-}
-.*//*box{
-	background: lightgrey;
-	text-align: center;
-	padding: 1.5rem 2rem;
-	box-shadow: 0 1px 5px rgba(0,0,0,0.7);
-	width: 100%;*/
-/*}
-.box2{
-	background: lightgrey;
-	text-align: center;
-	padding: 1.5rem 2rem;*/
-	/*width: 600px;*/
-	/*height: 800pxs;*/
-	/*box-shadow: 0 1px 5px rgba(0,0,0,0.7);*/
 
-/*}
-.top-container{
-	display: grid;
-	grid-gap: 20px;
-	margin: 30px 50px;
-	line-height: 1.4;
-	grid-template-areas:
-	'boxes boxes2'
-	'boxes boxes2'
-	'boxes boxes2';*/
-	/*'boxes boxes2';*/
-/*}
-.boxes{
-	grid-area: boxes2;
-}
-.boxes2{
-	grid-area: boxes2;
-}*/
 
 .mt{
 	margin-top: 10px
@@ -261,7 +214,7 @@ body{
 }
 
 .card {
-	border: 1px solid #d3d3d3;
+	border: 1px solid #5c4141;
   	border-radius: .25rem;
 }
 
@@ -274,6 +227,7 @@ body{
 
 .grid-content {
 	padding: 15px;
+
 }
 
 .grid-content h4 {
@@ -289,6 +243,11 @@ body{
 	margin-bottom: 1px;
 }
 
+.grid-content a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
 .empPage{
 	margin-top: 20px;
 }
@@ -302,4 +261,49 @@ body{
 .bodyEdit input{
 	 margin-bottom: 3px;
 
+}
+.img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.deleteimage{
+	width: 600px;
+	height: 520px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.comment-button {
+	border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.3333333;
+    padding-top: 8px;
+    padding-right: 12px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    background-color: green;
+    border: transparent;
+    color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-right: 2%;
+}
+
+.input-style1 {
+    width: 28%;
+    height: 36px;
+    padding-top: 6px;
+    padding-right: 16px;
+    padding-bottom: 6px;
+    padding-left: 16px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
