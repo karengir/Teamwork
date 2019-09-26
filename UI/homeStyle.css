@@ -1,0 +1,101 @@
+html{
+    height: 100%;
+}
+
+body {
+    background-image: url(https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.input-style1 {
+    width: 28%;
+    height: 36px;
+    padding-top: 6px;
+    padding-right: 16px;
+    padding-bottom: 6px;
+    padding-left: 16px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.homepage {
+    text-align: center;
+	}
+
+.homepage h1, h2, h3{
+  color: white;
+  font-weight: bold;
+  color: #5c1c1c;
+}
+
+ 
+h1{
+    padding-bottom: 5px;
+}
+
+.home1{
+    padding-top: 10%;
+}
+
+.my-button {
+    border-radius: 6px;
+    font-size: 20px;
+    line-height: 1.3333333;
+    padding-top: 10px;
+    padding-right: 16px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    background-color: green;
+    border: transparent;
+    color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.button{
+    flex: right;
+}
+
+.button a {
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+    padding-bottom: 10px;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 500px) {
+    .homepage {
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 656px) {
+    .homepage {
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 663px) {
+    .homepage {
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+    }
+}
+
