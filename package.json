@@ -1,0 +1,24 @@
+{
+  "name": "teamwork",
+  "version": "1.0.0",
+  "description": "Teamwork Article is a platform that is used by employees in a given company.On this platform, an employee gets to write an article, share it with other employees for them to see it and comment on it if they want.To access the project, a user will go to Git hub, click on clone or download page to get the link to the repository containing the pages.",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karengir/Teamwork.git"
+  },
+  "author": "karen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karengir/Teamwork/issues"
+  },
+  "homepage": "https://github.com/karengir/Teamwork#readme"
+}
