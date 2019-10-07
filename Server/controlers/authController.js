@@ -1,7 +1,7 @@
 import tokenGen from '../helpers/token.helper'
 import users from '../db/user';
-import cript from 'bcrypt-nodejs';
-
+// import cript from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt';
 
 class authController {
 
@@ -11,23 +11,34 @@ class authController {
             password: req.body.password
         };
 
-        const found = users.find(u => u.email === user.email);
-        
+        const found = users.find(u => u.email === user.email)
         if (found) {
-            const compare = await cript.compare(user.password, found.password)
+            const compare = await bcrypt.compare(user.password, found.password);
             if(compare){
-            res.status(200).json({
+                res.status(200).json({
                 status: 200,
                 message: 'user is successfully Logged In',
-                data: user
+                data: found
+            });
+        } else {
+            res.status(300).json({
+                status: 300,
+                message: 'wrong password',
+               // data: found
             });
         }
+        }else{
+            res.status(405).json({
+                status: 405,
+                message: 'user does not exist',
+               // data: found
+            });
         }
     }
 
-    static signup(req, res) {
-        const hash = cript.genSalt(10);
-        const passwordEncr = cript.hash(req.body.password, hash);
+    static async signup(req, res) {
+        const salt = await bcrypt.genSalt(10);
+        const passwordEncr = await bcrypt.hash(req.body.password, salt);
         const user = {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
