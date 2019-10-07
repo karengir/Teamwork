@@ -13,6 +13,12 @@ app.use(bodyParser.json());
 app.use('/api/v1/articles', articlesRouter);
 app.use('/api/v1/auth', authRouter);
 
+app.get('/', (req,res)=>{
+    res.status(200).json({
+        status:200,
+        message: 'Teamwork project'
+    })
+})
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
