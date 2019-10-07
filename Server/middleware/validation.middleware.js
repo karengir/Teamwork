@@ -53,7 +53,7 @@ const fields = Joi.object({
         .strict()
         .trim()
         .required()
-        .email,
+        .email(),
     password: Joi.string()
         .strict()
         .trim()
