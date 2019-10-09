@@ -1,18 +1,20 @@
 import articles from '../db/article';
 import comments from '../db/comments';
-
+//import verifyToken from '../middleware/tokenVerify';
 
 class userController {
 
 
     static addArticle(req, res) {
+
         const article = {
             id: articles.length + 1,
             title: req.body.title,
             article: req.body.article,
             createdOn: new Date().toDateString(),
-            createdBy: req.body.createdBy
+            createdBy: req.user.id
         };
+        console.log(article);
 
         articles.push(article);
         res.status(200).json({
@@ -24,15 +26,22 @@ class userController {
     }
 
     static deleteArticle(req, res) {
+
         const id = parseInt(req.params.articleId, 10);
         const found = articles.find(a => a.id === id);
-        console.log(found);
         if (found) {
-            articles.splice(articles.indexOf(found), 1);
-            return res.status(204).json({
-                status: 204,
-                message: 'article successfully deleted'
-            })
+            if (found.createdBy === req.user.id) {
+                articles.splice(articles.indexOf(found), 1);
+                return res.status(204).json({
+                    status: 204,
+                    message: 'article successfully deleted'
+                })
+            } else {
+                return res.status(400).json({
+                    status: 400,
+                    message: 'You can not delete an article that you didn\'t create'
+                });
+            }
         } else {
             return res.status(404).json({
                 status: 404,
@@ -44,19 +53,30 @@ class userController {
     static updateArticle(req, res) {
         const id = parseInt(req.params.articleId, 10);
         const found = articles.find(a => a.id === id);
-
+        
         const article = {
             title: req.body.title,
             article: req.body.article
         };
 
         if (found) {
+            if (found.createdBy === req.user.id) {
             articles.splice(articles.indexOf(found), 0, article)
             return res.status(200).json({
                 status: 200,
                 message: 'article successfully edited',
                 data: article
-            });
+            }) } else {
+                return res.status(400).json({
+                    status: 400,
+                    message: 'You can not edit an article that you didn\'t create'
+                });
+            }
+        } else {
+            res.status(400).json({
+                status: 400,
+                message: 'article not found'
+            })
         }
     }
 
@@ -64,7 +84,7 @@ class userController {
         const id = parseInt(req.params.articleId, 10)
         const found = articles.find(a => a.id === id)
 
-        
+
         if (found) {
             const comment = {
                 id: comments.length + 1,
@@ -83,6 +103,30 @@ class userController {
             console.log(articles);
             console.log(comments);
         }
+    }
+
+    static getSingleArticle(req, res) {
+        const id = parseInt(req.params.articleId, 10);
+        const found = articles.find(a => a.id === id);
+
+        if (found) {
+            res.status(200).json({
+                status: 200,
+                data: found
+            });
+        }else{
+            res.status(404).json({
+                status: 404,
+                data: "article not found"
+            });
+        }
+    }
+
+    static getArticles(req, res) {
+        res.status(200).json({
+            status:200,
+            data:articles
+        });
     }
 
 
