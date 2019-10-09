@@ -18,20 +18,20 @@ class authController {
                 res.status(200).json({
                 status: 200,
                 message: 'user is successfully Logged In',
-                data: found
+                token: tokenGen(user.email,found.id)
             });
         } else {
             res.status(300).json({
                 status: 300,
                 message: 'wrong password',
-               // data: found
+               
             });
         }
         }else{
             res.status(405).json({
                 status: 405,
                 message: 'user does not exist',
-               // data: found
+              
             });
         }
     }
@@ -40,6 +40,7 @@ class authController {
         const salt = await bcrypt.genSalt(10);
         const passwordEncr = await bcrypt.hash(req.body.password, salt);
         const user = {
+            id:users.length+1,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
@@ -56,8 +57,11 @@ class authController {
             res.status(201).json({
                 status: 201,
                 message: 'User successfully created',
-                data: user,
-                token: tokenGen(user.email)
+                data: Object.defineProperty(user, "password", {
+                    enumerable: false,
+                    writable: true
+                    }),
+                token: tokenGen(user.email,user.id)
             })
         } else{
             return res.status(409).json({
