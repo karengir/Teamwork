@@ -29,7 +29,8 @@
   "scripts": {
     "start": "babel-node Server/app.js",
     "local": "nodemon --exec babel-node Server/app.js",
-    "test": "mocha --require @babel/polyfill --require @babel/register server/test/user.test.js --timeout 10000 --exit"
+    "test": "nyc mocha --require @babel/polyfill --require @babel/register Server/test/*.js --timeout 10000 --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
