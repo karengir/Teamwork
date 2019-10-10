@@ -39,7 +39,7 @@ class userController {
             } else {
                 return res.status(400).json({
                     status: 400,
-                    message: 'You can not delete an article that you didn\'t create'
+                    message: 'You cannot delete an article that you did not create'
                 });
             }
         } else {
@@ -69,7 +69,7 @@ class userController {
             }) } else {
                 return res.status(400).json({
                     status: 400,
-                    message: 'You can not edit an article that you didn\'t create'
+                    message: 'You cannot edit an article that you did not create'
                 });
             }
         } else {
@@ -92,7 +92,6 @@ class userController {
                 articleId: id
             };
             comments.push(comment);
-            // article to return with the new comment
             let article = found;
             article.comment = comment;
             res.status(200).json({
@@ -100,8 +99,7 @@ class userController {
                 message: 'comment successfully added',
                 data: article
             });
-            console.log(articles);
-            console.log(comments);
+           
         }
     }
 

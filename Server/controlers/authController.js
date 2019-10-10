@@ -23,7 +23,7 @@ class authController {
         } else {
             res.status(300).json({
                 status: 300,
-                message: 'wrong password',
+                message: 'wrong password'
                
             });
         }
@@ -64,7 +64,7 @@ class authController {
                 token: tokenGen(user.email,user.id)
             })
         } else{
-            return res.status(409).json({
+             res.status(409).json({
                 status: 409,
                 message: 'user already exists'
             })

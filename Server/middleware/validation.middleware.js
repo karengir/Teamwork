@@ -79,15 +79,15 @@ const createArticle = (req, res, next) => {
         article: Joi.string()
             .strict()
             .trim()
-            .required(),
-        createdOn: Joi.string()
-            .strict()
-            .trim()
-            .required(),
-        createdBy: Joi.string()
-            .strict()
-            .trim()
             .required()
+        // createdOn: Joi.string()
+        //     .strict()
+        //     .trim()
+        //     .required()
+        // createdBy: Joi.string()
+        //     .strict()
+        //     .trim()
+        //     .required()
     };
     const output = Joi.validate(req.body, fields);
     if(output.error != null){

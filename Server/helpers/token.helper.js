@@ -3,5 +3,5 @@ import jwt from 'jsonwebtoken';
 
 const MakeToken = (email,id) => jwt.sign({email:email,id:id}, process.env.SECRET); 
 
-export default MakeToken
+export default MakeToken;
 
