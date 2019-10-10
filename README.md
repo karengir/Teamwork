@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/karengir/Teamwork.svg?branch=Develop)](https://travis-ci.com/karengir/Teamwork)  [![Coverage Status](https://coveralls.io/repos/github/karengir/Teamwork/badge.svg?branch=Develop)](https://coveralls.io/github/karengir/Teamwork?branch=Develop)
+
 # Table of contents
 * Introduction
 * General Information
