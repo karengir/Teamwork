@@ -1,22 +1,24 @@
 import articles from '../db/article';
 import comments from '../db/comments';
 //import verifyToken from '../middleware/tokenVerify';
+import queries from '../db/queries';
+import executeQuery from "../db/executeQuery";
 
 class userController {
 
 
-    static addArticle(req, res) {
+    static async addArticle(req, res) {
 
         const article = {
-            id: articles.length + 1,
             title: req.body.title,
             article: req.body.article,
             createdOn: new Date().toDateString(),
-            createdBy: req.user.id
+            createdBy: req.user.email
         };
-        console.log(article);
+        const params = [article.title, article.article, article.createdOn, article.createdBy]
 
-        articles.push(article);
+        const resu = await executeQuery.real(queries.articles.insert, params);
+        console.log(resu);
         res.status(200).json({
             status: 200,
             message: 'article successfully created',
@@ -25,13 +27,15 @@ class userController {
         });
     }
 
-    static deleteArticle(req, res) {
+    static async deleteArticle(req, res) {
 
         const id = parseInt(req.params.articleId, 10);
-        const found = articles.find(a => a.id === id);
-        if (found) {
-            if (found.createdBy === req.user.id) {
-                articles.splice(articles.indexOf(found), 1);
+        const found = await executeQuery.real(queries.articles.findById, [id]);
+        console.log(found);
+        if (found.rowCount > 0) {
+            if (found.rows[0].createdby === req.user.email) {
+                // articles.splice(articles.indexOf(found), 1);
+                await executeQuery.real(queries.articles.delete, [id]);
                 return res.status(204).json({
                     status: 204,
                     message: 'article successfully deleted'
@@ -39,7 +43,7 @@ class userController {
             } else {
                 return res.status(400).json({
                     status: 400,
-                    message: 'You cannot delete an article that you did not create'
+                    message: 'You can not delete an article that you didn\'t create'
                 });
             }
         } else {
@@ -53,7 +57,7 @@ class userController {
     static updateArticle(req, res) {
         const id = parseInt(req.params.articleId, 10);
         const found = articles.find(a => a.id === id);
-        
+
         const article = {
             title: req.body.title,
             article: req.body.article
@@ -61,15 +65,16 @@ class userController {
 
         if (found) {
             if (found.createdBy === req.user.id) {
-            articles.splice(articles.indexOf(found), 0, article)
-            return res.status(200).json({
-                status: 200,
-                message: 'article successfully edited',
-                data: article
-            }) } else {
+                articles.splice(articles.indexOf(found), 0, article)
+                return res.status(200).json({
+                    status: 200,
+                    message: 'article successfully edited',
+                    data: article
+                })
+            } else {
                 return res.status(400).json({
                     status: 400,
-                    message: 'You cannot edit an article that you did not create'
+                    message: 'You can not edit an article that you didn\'t create'
                 });
             }
         } else {
@@ -92,6 +97,7 @@ class userController {
                 articleId: id
             };
             comments.push(comment);
+            // article to return with the new comment
             let article = found;
             article.comment = comment;
             res.status(200).json({
@@ -99,20 +105,20 @@ class userController {
                 message: 'comment successfully added',
                 data: article
             });
-           
+            console.log(articles);
+            console.log(comments);
         }
     }
 
-    static getSingleArticle(req, res) {
+    static async getSingleArticle(req, res) {
         const id = parseInt(req.params.articleId, 10);
-        const found = articles.find(a => a.id === id);
-
-        if (found) {
+        const found = await executeQuery.real(queries.articles.findById, [id]);
+        if (found.rowCount > 0) {
             res.status(200).json({
                 status: 200,
-                data: found
+                data: found.rows[0]
             });
-        }else{
+        } else {
             res.status(404).json({
                 status: 404,
                 data: "article not found"
@@ -120,10 +126,11 @@ class userController {
         }
     }
 
-    static getArticles(req, res) {
+    static async getArticles(req, res) {
+        const found = await executeQuery.real(queries.articles.findAll)
         res.status(200).json({
-            status:200,
-            data:articles
+            status: 200,
+            data: found.rows
         });
     }
 
